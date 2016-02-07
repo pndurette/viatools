@@ -31,16 +31,16 @@ class BoardingPass:
         Fields of a standard barcode string (example):
 
         0507201327229Durette                       4   8D MTRLTRTOVIA69  
-        |------------|----------------------------|---|--|---|---|--|---| ...
-          \_ ETF       \_ Last name      Train car_/    | |    |  |   \_Train number   
-                                            Train seat_/  |    |  \_Train Operator
-                                        Departure Station_/    \ Arrival Station
+        |------------|-----------------------------|---|--|---|---|--|--- ...
+          \_ETF        \_Last name        Train car_/   |  |   |  |   \_Train number
+                                            Train seat_/   |   |   \_Train Operator
+                                        Departure Station_/     \_Arrival Station
        
-        ...  201308111830Pierre Nicolas      P1YSADTZZG41720130705225402C2 NB
-        ... ------------|------------------|------|-----|-------------|-----|
-               \_Departure time  |    Unknown_/   |        |            \_Luggage rule
-                                 \_First name     |         \_Reservation time
-                                                  \_Reservation confirmation
+        ... 201308111830Pierre Nicolas      P1YSADTZZG41720130705225402C2 NB
+        ... |-----------|-------------------|---|--|-----|-------------|-----
+              \_Departure time  |    Unknown_/   |   |      |            \_Luggage rule
+                    First name_/      Age group_/    |       \_Reservation time
+                                                      \_Reservation confirmation
         """
 
         # Construct boarding pass fields
