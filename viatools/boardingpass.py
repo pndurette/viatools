@@ -31,16 +31,16 @@ class BoardingPass:
         Fields of a standard barcode string (example):
 
         0507201327229Durette                       4   8D MTRLTRTOVIA69  
-        |------------|----------------------------|---|--|---|---|--|---| ...
-          \_ ETF       \_ Last name      Train car_/    | |    |  |   \_Train number   
-                                            Train seat_/  |    |  \_Train Operator
-                                        Departure Station_/    \ Arrival Station
+        |------------|-----------------------------|---|--|---|---|--|--- ...
+          \_ETF        \_Last name        Train car_/   |  |   |  |   \_Train number
+                                            Train seat_/   |   |   \_Train Operator
+                                        Departure Station_/     \_Arrival Station
        
-        ...  201308111830Pierre Nicolas      P1YSADTZZG41720130705225402C2 NB
-        ... ------------|------------------|------|-----|-------------|-----|
-               \_Departure time  |    Unknown_/   |        |            \_Luggage rule
-                                 \_First name     |         \_Reservation time
-                                                  \_Reservation confirmation
+        ... 201308111830Pierre Nicolas      P1YSADTZZG41720130705225402C2 NB
+        ... |-----------|-------------------|---|--|-----|-------------|-----
+              \_Departure time  |    Unknown_/   |   |      |            \_Luggage rule
+                    First name_/      Age group_/    |       \_Reservation time
+                                                      \_Reservation confirmation
         """
 
         # Construct boarding pass fields
@@ -55,10 +55,11 @@ class BoardingPass:
             "train_number" : decoded[61:65],
             "depart_time" : decoded[65:77],
             "passenger_first_name" : decoded[77:97],
-            "unknown" : decoded[97:104],
+            "unknown" : decoded[97:101],
+            "passenger_age_group": decoded[101:104],
             "reservation_confirmation" : decoded[104:110],
             "reservation_time" : decoded[110:124],
-            "train_luggage_rule" : decoded[124:136]
+            "train_luggage_rule" : decoded[124:130]
         }
 
         # We keep the raw to reconstruct the barcode
@@ -75,6 +76,7 @@ class BoardingPass:
         # Strings
         info["passenger_first_name"] = info["passenger_first_name"].strip().title() 
         info["passenger_last_name"] = info["passenger_last_name"].strip().title()
+        info["passenger_age_group"] = info["passenger_age_group"].strip()
         info["train_luggage_rule"] = info["train_luggage_rule"].strip()
         info["train_seat"] = info["train_seat"].strip() if info["train_seat"].strip() else None
 
